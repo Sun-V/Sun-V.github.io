@@ -11,7 +11,7 @@
 
     <title>
         
-        为什么会出现从CISC到RISC的转变？ - undefined
+        vim在insert模式使用esc不能切换到命令模式 - undefined
         
     </title>
 
@@ -119,15 +119,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        为什么会出现从CISC到RISC的转变？
+        vim在insert模式使用esc不能切换到命令模式
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-03-11 19:45:00</span></span>
+        <span class="attr">发布于：<span>2019-03-13 15:02:36</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#高级计算机系统结构" title="高级计算机系统结构">高级计算机系统结构</a>
+        <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
         <span>/</span>
         
         
@@ -137,10 +137,14 @@
 
     </div>
     <div class="post-content ">
-        <ol>
-<li>二八定律。机器执行的指令中85%左右都是简单指令，复杂指令甚少。</li>
-<li>控制器设计难度下降。</li>
+        <p>今天在终端使用vim编辑完文件发现esc键按下后界面会卡住，而不是进入命令模式。起初以为是jupyter notebook的原因，但没搜索到有用的相关信息。再浏览一些网页后，总结有如下可能：</p>
+<ol>
+<li>浏览器问题。键位被截获或浏览器兼容差异。</li>
+<li>vim软件包未安装完全。</li>
 </ol>
+<p>忽略问题，可以在insert模式下使用ctrl+c键进入命令模式。</p>
+<hr>
+<p>若使用ctrl+z退出会形成swp文件（ls -a可见），可先使用<code>vim -r xxx.xx</code>进行恢复，再使用<code>rm .xxx.xx.swp</code>进行删除。</p>
 
         
         <br>
