@@ -11,7 +11,7 @@
 
     <title>
         
-        vim在insert模式使用esc不能切换到命令模式 - undefined
+        刷机重置手机前忘记退出google账号，导致开机卡google验证的解决方法 - undefined
         
     </title>
 
@@ -119,15 +119,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        vim在insert模式使用esc不能切换到命令模式
+        刷机重置手机前忘记退出google账号，导致开机卡google验证的解决方法
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-03-13 15:02:36</span></span>
+        <span class="attr">发布于：<span>2019-03-24 20:29:05</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+        <a class="tag" href="/tags/#Android" title="Android">Android</a>
         <span>/</span>
         
         
@@ -137,14 +137,13 @@
 
     </div>
     <div class="post-content ">
-        <p>今天在终端使用vim编辑完文件发现esc键按下后界面会卡住，而不是进入命令模式。起初以为是jupyter notebook的原因，但没搜索到有用的相关信息。再浏览一些网页后，总结有如下可能：</p>
+        <p>注：此处方法的前提是可以科学上网。</p>
 <ol>
-<li>浏览器问题。键位被截获或浏览器兼容差异。</li>
-<li>vim软件包未安装完全。</li>
+<li>在电脑上将SSR的“允许来自局域网的连接”打上对号；<br><img src="img/1.jpg" alt="SSR"></li>
+<li>打开电脑的移动热点；<br><img src="img/2.jpg" alt="移动热点"></li>
+<li>win+R，输入cmd，使用ipconfig指令找到新的本地连接（一般是最后一个），复制IPv4地址（192.168.137.1）；<br><img src="img/3.jpg" alt="ip地址"></li>
+<li>手机找到电脑的移动热点，输入密码，不要着急连接。点开高级选项，“代理”一项选择“手动”，“代理服务器主机名”一项输入刚才复制的IPv4地址，“代理服务器端口”一项输入SSR设置的本地端口（一般默认是1080），连接wifi；<br>5.这时如果没有意外就可以顺利登录google账号了。</li>
 </ol>
-<p>忽略问题，可以在insert模式下使用ctrl+c键进入命令模式。</p>
-<hr>
-<p>若使用ctrl+z退出会形成swp文件（ls -a可见），可先使用<code>vim -r xxx.xx</code>进行恢复，再使用<code>rm .xxx.xx.swp</code>进行删除。</p>
 
         
         <br>
