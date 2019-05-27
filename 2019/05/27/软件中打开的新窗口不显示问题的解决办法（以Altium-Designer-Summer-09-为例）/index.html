@@ -11,7 +11,7 @@
 
     <title>
         
-        
+        软件中打开的新窗口不显示问题的解决办法（以Altium Designer Summer 09 为例） - undefined
         
     </title>
 
@@ -59,7 +59,7 @@
                     <span>HOME</span>
                 </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
                     <span>TAGS</span>
@@ -88,6 +88,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    
+</div>
+    
 </div>
 
 
@@ -113,95 +117,40 @@
         
 
 
-<!-- 归档列表 -->
+<div class="post-container">
+    <div class="post-title">
+        软件中打开的新窗口不显示问题的解决办法（以Altium Designer Summer 09 为例）
+    </div>
 
-<div class="archives-container">
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-05-27 09:42:17</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Application" title="Application">Application</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
 
-<div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2019">
-                    <span class="tag-text">2019</span>
-                </span>
-    <ul>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li>
-            <span>05-14</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/05/14/jupyter-notebook浏览器页面关闭后丢失输出的解决方法/">
-                        <span>
-                            jupyter notebook浏览器页面关闭后丢失输出的解决方法
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li>
-            <span>04-29</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/04/29/笔记本键盘上某些键（例如break键）消失了怎么办？/">
-                        <span>
-                            笔记本键盘上某些键（例如break键）消失了怎么办？
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li>
-            <span>03-27</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/03/27/VPS使用Google-BBR加速后无法连接网络的解决办法/">
-                        <span>
-                            VPS使用Google BBR加速后无法连接网络的解决办法
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li>
-            <span>03-24</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/03/24/刷机重置手机前忘记退出google账号，导致开机卡google验证的解决方法/">
-                        <span>
-                            刷机重置手机前忘记退出google账号，导致开机卡google验证的解决方法
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li>
-            <span>03-13</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/03/13/vim在insert模式使用esc不能切换到命令模式/">
-                        <span>
-                            vim在insert模式使用esc不能切换到命令模式
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
+    </div>
+    <div class="post-content ">
+        <p>前两天上课使用到了古老的Altium Designer Summer09，在SCH Library栏打算对组件信息进行编辑时，“Library Component Properties”窗口死活打不开。起始以为是版本问题，但使用同版本软件同Windows 10版本的同学没问题；后来认为是.net Framework版本的原因，但开启低版本后问题依旧。</p>
+<p>最后，我把关注点转移到了一般软件问题上，最终发现问题发生的原因是我之前使用双显示器，而上课时只使用了笔记本屏幕，打开的窗口跑到第二屏幕上去了。</p>
+<p>另外，Windows系统上遇到除此之外的窗口打不开问题，可以尝试在任务栏图标上停留，然后在缩略图上右击选择最大化，或alt+tab选择不显示的窗口，然后使用win+上方向键。</p>
 
-    </ul>
-</div>
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
 
+        <div id="lv-container">
+        </div>
+
+    </div>
 </div>
 
     </div>
@@ -258,7 +207,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
