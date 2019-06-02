@@ -11,7 +11,7 @@
 
     <title>
         
-        jupyter notebook浏览器页面关闭后丢失输出的解决方法 - undefined
+        访问谷歌xx出现but your computer or network may be sending automated queries问题的解决办法 - undefined
         
     </title>
 
@@ -119,15 +119,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        jupyter notebook浏览器页面关闭后丢失输出的解决方法
+        访问谷歌xx出现but your computer or network may be sending automated queries问题的解决办法
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-05-14 15:03:19</span></span>
+        <span class="attr">发布于：<span>2019-06-02 16:33:42</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#Python" title="Python">Python</a>
+        <a class="tag" href="/tags/#VPS" title="VPS">VPS</a>
         <span>/</span>
         
         
@@ -137,10 +137,11 @@
 
     </div>
     <div class="post-content ">
-        <p>在使用jupyter notebook运行比较长时间的任务时，标签页一旦关闭或者网络中断，代码的输出将不会再被记录，虽然实际程序还在运行。对此我使用的解决方法是将输出写入到文件中。</p>
-<p>logger.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line"></span><br><span class="line">class Logger(object):</span><br><span class="line">    def __init__(self, filename=&apos;Default.log&apos;):</span><br><span class="line">        self.terminal = sys.stdout</span><br><span class="line">        self.log = open(filename, &apos;a&apos;)</span><br><span class="line"></span><br><span class="line">    def write(self, message):</span><br><span class="line">        self.terminal.write(message)</span><br><span class="line">        self.log.write(message)</span><br><span class="line"></span><br><span class="line">    def flush(self):</span><br><span class="line">        pass</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure></p>
-<p>test.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import logger</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">def func():</span><br><span class="line">    print(&apos;hello world!&apos;)</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">sys.stdout = logger.Logger(&apos;output.txt&apos;)</span><br><span class="line">func()</span><br><span class="line">print(&apos;hello python!&apos;)</span><br></pre></td></tr></table></figure></p>
-<p>但在notebook中使用时发现一个问题，就是在运行过程中，文件中的内容始终为空，在shutdown .ipynb后才会显示输出。</p>
+        <p>刚进六月，由于不可说的原因，之前VPS的IP废掉了。使用新的IP访问谷歌学术时，却出现了如题目所示的问题。经过搜索，得知原因是我使用的IPv4网段被封掉了，所以解决办法就是强制VPS使用IPv6访问谷歌学术。</p>
+<p>方法是在hosts中指定谷歌学术的IPv6地址。<br>首先需要VPS支持IPv6。我使用的是vultr，在server information界面，点进Settings-IPv6进行分配地址，然后修改hosts文件。</p>
+<p><code>sudo nano /etc/hosts</code></p>
+<p>在hosts文件中加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## Scholar 学术搜索</span><br><span class="line">2404:6800:4008:c06::be scholar.google.com</span><br><span class="line">2404:6800:4008:c06::be scholar.google.com.hk</span><br><span class="line">2404:6800:4008:c06::be scholar.google.com.tw</span><br><span class="line">2404:6800:4005:805::200e scholar.google.cn #www.google.cn</span><br></pre></td></tr></table></figure></p>
+<p>可以在<a href="https://raw.githubusercontent.com/lennylxx/ipv6-hosts/master/hosts" target="_blank" rel="noopener">这里</a>获取最新的IPv6地址</p>
 
         
         <br>
