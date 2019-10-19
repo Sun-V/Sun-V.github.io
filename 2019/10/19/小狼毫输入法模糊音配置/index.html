@@ -11,7 +11,7 @@
 
     <title>
         
-        vim在insert模式使用esc不能切换到命令模式 - undefined
+        小狼毫输入法模糊音配置 - undefined
         
     </title>
 
@@ -119,15 +119,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        vim在insert模式使用esc不能切换到命令模式
+        小狼毫输入法模糊音配置
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2019-03-13 15:02:36</span></span>
+        <span class="attr">Post：<span>2019-10-19 19:47:47</span></span>
         
         <span class="attr">Tags：/
         
-        <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+        <a class="tag" href="/tags/#Application" title="Application">Application</a>
         <span>/</span>
         
         
@@ -137,14 +137,11 @@
 
     </div>
     <div class="post-content ">
-        <p>今天在终端使用vim编辑完文件发现esc键按下后界面会卡住，而不是进入命令模式。起初以为是jupyter notebook的原因，但没搜索到有用的相关信息。再浏览一些网页后，总结有如下可能：</p>
-<ol>
-<li>浏览器问题。键位被截获或浏览器兼容差异。</li>
-<li>vim软件包未安装完全。</li>
-</ol>
-<p>忽略问题，可以在insert模式下使用ctrl+c键进入命令模式。</p>
-<hr>
-<p>若使用ctrl+z退出会形成swp文件（ls -a可见），可先使用<code>vim -r xxx.xx</code>进行恢复，再使用<code>rm .xxx.xx.swp</code>进行删除。</p>
+        <p>小狼毫输入法的模糊音<a href="https://github.com/rime/home/wiki/CustomizationGuide" target="_blank" rel="noopener">配置</a>是有明月拼音的<a href="https://gist.github.com/lotem/2320943" target="_blank" rel="noopener">定制模板</a>的，但微软双拼输入方案在这一设置下并不会生效，需要做一些调整。</p>
+<p>模板中代码添加位置是在“luna_pinyin.custom.yaml”下，但双拼方案修改“.custom.yaml”无效。应当修改用户文件夹下“double_pinyin_mspy.schema.yaml”文件（其他输入方案修改对应“.schema.yaml”文件），在“speller/algebra”<br>下添加如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- abbrev/^([az]).+$/$1/            #简拼（首字母）</span><br><span class="line">   - abbrev/^([zcs]h).+$/$1/           #简拼（zh, ch, sh） </span><br><span class="line">   - derive/^([zcs])h/$1/ # zh, ch, sh =&gt; z, c, s</span><br><span class="line">   - derive/^([zcs])([^h])/$1h$2/ # z, c, s =&gt; zh, ch, sh</span><br><span class="line">   - derive/([aei])n$/$1ng/ # en =&gt; eng, in =&gt; ing</span><br><span class="line">   - derive/([aei])ng$/$1n/ # eng =&gt; en, ing =&gt; in</span><br><span class="line">   - derive/([iu])an$/$lang/ # ian =&gt; iang, uan =&gt; uang</span><br><span class="line">   - derive/([iu])ang$/$lan/ # iang =&gt; ian, uang =&gt; uan</span><br></pre></td></tr></table></figure>
+<p>注意要将代码添加至“xform”代码段之前，如下：<br><img src="/img/小狼毫_添加代码.jpg" alt="代码添加"></p>
+<p>重新部署之后即可使用模糊音。</p>
 
         
         <br>
