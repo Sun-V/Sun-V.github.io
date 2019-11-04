@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="日常摸鱼">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        索尼Xperia XZ2刷入第三方固件教程 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 富强    民主    文明    和谐    自由    平等    公正    法治    爱国    敬业    诚信    友善 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/favicon.ico">
+        </div>
+        <div class="name">
+            <i>SunV</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 富强    民主    文明    和谐    自由    平等    公正    法治    爱国    敬业    诚信    友善 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        索尼Xperia XZ2刷入第三方固件教程
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-11-03 09:20:37</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Android" title="Android">Android</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content ">
+        <p>建议进行以下操作前对手机内重要数据进行备份，退出SIM卡和消除Google帐号。以下操作中，解锁环境为Android P和Windows 10，使用第三方固件为<a href="http://bbs.gfan.com/android-9619914-1-1.html" target="_blank" rel="noopener">machao44的v2.1</a>，与之对应，使用底包为<a href="http://bbs.gfan.com/android-9619774-1-1.html" target="_blank" rel="noopener">CN_52.0.A.11.3</a></p>
+<p>#1. 解锁</p>
+<p>索尼Xperia如果要使用非官方固件，需要先进行解锁。</p>
+<p>##1.1. 获取解锁码</p>
+<p>进入<a href="https://developer.sony.com/develop/open-devices/get-started/unlock-bootloader/" target="_blank" rel="noopener">Xperia解锁页面</a>（需要翻墙操作），在页面最下方选择机型，填入IMEI号，选中前两个选项提交，即可获得解锁码。</p>
+<p><img src="/img/unlock.jpg" alt="解锁界面"></p>
+<p>##1.2. 安装驱动</p>
+<p>安装驱动除了下面操作外，还可使用Flashtool工具进行，</p>
+<p>下载<a href="https://forum.xda-developers.com/crossdevice-dev/sony/progress-newflasher-xperia-command-line-t3619426" target="_blank" rel="noopener">newflasher工具</a>，解压缩后运行newflasher.exe，输入y回车后得到GordonGate.7z。解压缩此文件，右键安装ggsomc.inf。再下载并解压缩<a href="https://developer.sony.com/develop/drivers/" target="_blank" rel="noopener">对应机型的驱动文件</a>，右键安装sa118adb.inf文件。</p>
+<p>在电脑上打开设备管理器，手机关机，按住音量降低键同时USB接入电脑，手机指示灯为绿色可松开音量键，此时进入绿灯模式（Flashmode）。注意设备管理器中新添加的SOMC Flash Device，如果有黄色叹号，右键选择“更新驱动程序”-“浏览我的计算机以查找驱动程序软件”-“让我从计算机上的可用驱动程序列表中选取”，选择“SOMC Flash Device”。再断开数据线，按住音量增加键同时连接数据线，手机指示灯为蓝色时松开，此时进入蓝灯模式(Fastboot)。和上面步骤类似，对应新添加的是“Sony sa0118 ADB Interface Drive”，有黄色叹号需要在驱动列表中找到”Sonysa0118”安装。</p>
+<p>##1.3. 强刷非大陆版固件</p>
+<p>此步骤应用于国行固件，若此时手机固件已经是非国行版本（港版，印度版等等）了，可跳过此步骤。<br>①使用XperiFirm或在论坛下载一非国行固件，将固件解压。<br>②将boot文件夹中文件后缀.sinb的改为.sin，将.tab的改为.ta。<br>③将根目录下的boot_delivery.xml移动至boot文件夹内。<br>④将1.2.中newflasher文件夹中的七个newflasher文件复制到固件文件夹中。<br>⑤检查是否有simlock.ta和fwinfo.xml文件，若有，删掉。<br>⑥将partition.zip解压。<br>⑦按住音量降低键进入绿灯模式,管理员模式运行newflasher.exe，输入两次n并回车，出现“请按任意键继续”说明刷入完成。</p>
+<p>##1.4. OEM解锁</p>
+<p>点击设置-系统-关于手机-版本号多次，直到出现开发者模式。在系统-开发者选项中打开OEM解锁。</p>
+<p>##1.5. 使用解锁码进行解锁</p>
+<p>下载<a href="https://dl.google.com/android/repository/platform-tools_r25-windows.zip" target="_blank" rel="noopener">platform-tools</a>并解压缩，打开windows命令处理程序（win10下右击win图标，选择命令提示符（管理员）），cd到adb.exe所在目录下，如下图。</p>
+<p><img src="/img/cdadb.jpg" alt="命令处理程序"></p>
+<p>进入蓝灯模式，输入</p>
+<p><code>fastboot devices</code></p>
+<p>回车，再输入</p>
+<p><code>fastboot oem unlock 0x此处为解锁码</code></p>
+<p>即可解锁。</p>
+<p>#2. 线刷底包和卡刷第三方固件</p>
+<p>##2.1. 线刷底包固件</p>
+<p>底包是第三方作者进行增强操作的基础包，如下图中的第三方固件是基于官方的52.0.A.11.3进行修改的。</p>
+<p><img src="/img/底包.jpg" alt="底包说明"></p>
+<p>线刷底包固件操作同1.3.，刷完不要开机。</p>
+<p>##2.2. 刷入Recovery</p>
+<p>此步骤和<a href="http://bbs.gfan.com/forum.php?mod=viewthread&amp;tid=9513429&amp;extra=page%3D1%26filter%3Dtypeid%26typeid%3D12976%26typeid%3D12976" target="_blank" rel="noopener">机锋论坛中的root教程</a>一致，且所需工具亦来源于同一帖。</p>
+<p>①下载帖子中的隐藏资源，将其中的XZ2-2C-root.zip解压。进入其中的adb文件夹，打开windows命令处理程序，cd到此目录下（参考1.5.）。</p>
+<p>②进入蓝灯模式（音量增加键连接电脑），输入下面的命令并回车</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot twrp-xz2.img</span><br><span class="line">fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img</span><br></pre></td></tr></table></figure>
+<p>③断开数据线，同时按住音量降低键和电源键，会进入TWRP Recovery，点击挂载，启用MTP模式。点击home键可返回到初始界面。（下面几步主要是对底包进行root，故可以直接跳过，进行2.3.）<br>④将底包文件夹中的以boot_X开头的sin文件用鼠标拖动到XZ2-2C-root文件夹下的UnSIN.exe文件上，会在底包文件夹中出现同名的img文件，将其改名为kernel.img并移动到XZ2-2C-root下的boot文件夹内，压缩boot文件夹为boot.zip。</p>
+<p><img src="/img/Unsin.jpg" alt="UnSIN"></p>
+<p>⑤将boot.zip，对应底包版本文件夹内的twrp-installer-xz2-2c-3.2.3.zip（不对应版本会使twrp无法触控），Magisk-v17.2.zip，fstab.zip复制到手机存储，依次使用twrp安装刷入。<br>⑥开机，正常进入之后关机再次进入twrp，将permissive.zip复制到手机存储，刷入。开机。</p>
+<p>##2.3. 卡刷第三方固件</p>
+<p>①将下载好的XPERIA_PIE_XZ2_2.1.zip、1-Magisk.zip和2-Permissive.zip以及其他需要使用的卡刷包复制到手机存储或外置SD卡。<br>②关机进入twrp，点击清除，滑动下方按钮完成双清。<br>③点击安装，选择XPERIA_PIE_XZ2_2.1.zip开始刷入。<br>④再依次刷入1-Magisk.zip和2-Permissive.zip。<br>⑤看论坛评论此版本谷歌框架的使用有问题，因此再刷入delete google.zip。<br>⑥平时使用谷歌套件可去<a href="https://opengapps.org/" target="_blank" rel="noopener">OpenGAPPS</a>下载对应卡刷包刷入，这里不要使用aroma，亲测无法弹出自定义图形界面。<br>⑦开机。</p>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/sunjianqiangv">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank" href="https://github.com/Sun-V">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
