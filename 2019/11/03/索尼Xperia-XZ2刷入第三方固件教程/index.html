@@ -137,7 +137,7 @@
 
     </div>
     <div class="post-content ">
-        <p>建议进行以下操作前对手机内重要数据进行备份，退出SIM卡和消除Google帐号。以下操作中，解锁环境为Android P和Windows 10，使用第三方固件为<a href="http://bbs.gfan.com/android-9619914-1-1.html" target="_blank" rel="noopener">machao44的v2.1</a>，与之对应，使用底包为<a href="http://bbs.gfan.com/android-9619774-1-1.html" target="_blank" rel="noopener">CN_52.0.A.11.3</a></p>
+        <p>建议进行以下操作前对手机内重要数据进行备份，退出SIM卡和消除Google帐号。以下操作中，解锁环境为Android P和Windows 10，使用第三方固件为<a href="http://bbs.gfan.com/android-9619914-1-1.html" target="_blank" rel="noopener">machao44的v2.1</a>，与之对应，使用底包为<a href="http://bbs.gfan.com/android-9619774-1-1.html" target="_blank" rel="noopener">CN_52.0.A.11.3</a>。</p>
 <h1 id="1-解锁"><a href="#1-解锁" class="headerlink" title="1. 解锁"></a>1. 解锁</h1><p>索尼Xperia如果要使用非官方固件，需要先进行解锁。</p>
 <h2 id="1-1-获取解锁码"><a href="#1-1-获取解锁码" class="headerlink" title="1.1. 获取解锁码"></a>1.1. 获取解锁码</h2><p>进入<a href="https://developer.sony.com/develop/open-devices/get-started/unlock-bootloader/" target="_blank" rel="noopener">Xperia解锁页面</a>（需要翻墙操作），在页面最下方选择机型，填入IMEI号，选中前两个选项提交，即可获得解锁码。</p>
 <p><img src="/img/unlock.jpg" alt="解锁界面"></p>
@@ -167,9 +167,11 @@
 <p>① 下载帖子中的隐藏资源，将其中的XZ2-2C-root.zip解压。进入其中的adb文件夹，打开windows命令处理程序，cd到此目录下（参考1.5.）。</p>
 <p>② 进入蓝灯模式（音量增加键连接电脑），输入下面的命令并回车</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot twrp-xz2.img</span><br><span class="line">fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img</span><br></pre></td></tr></table></figure>
-<p>③ 断开数据线，同时按住音量降低键和电源键，会进入TWRP Recovery，点击挂载，启用MTP模式。点击home键可返回到初始界面。（下面几步主要是对底包进行root，故可以直接跳过，进行2.3.）</p>
+<p>③ 断开数据线，同时按住音量降低键和电源键，会进入TWRP Recovery，点击挂载，启用MTP模式。点击home键可返回到初始界面。（<del>下面几步主要是对底包进行root，故可以直接跳过，进行2.3.</del> 保险起见，还是全刷了吧）</p>
 <p>④ 将底包文件夹中的以boot_X开头的sin文件用鼠标拖动到XZ2-2C-root文件夹下的UnSIN.exe文件上，会在底包文件夹中出现同名的img文件，将其改名为kernel.img并移动到XZ2-2C-root下的boot文件夹内，压缩boot文件夹为boot.zip。</p>
 <p><img src="/img/UnSIN.jpg" alt="UnSIN"></p>
+<p>注意，boot.zip打开如下图所示，一个文件夹和一个文件。</p>
+<p><img src="/img/boot.jpg" alt="boot"></p>
 <p>⑤ 将boot.zip，对应底包版本文件夹内的twrp-installer-xz2-2c-3.2.3.zip（不对应版本会使twrp无法触控），Magisk-v17.2.zip，fstab.zip复制到手机存储，依次使用twrp安装刷入。</p>
 <p>⑥ 开机，正常进入之后关机再次进入twrp，将permissive.zip复制到手机存储，刷入。开机。</p>
 <h2 id="2-3-卡刷第三方固件"><a href="#2-3-卡刷第三方固件" class="headerlink" title="2.3. 卡刷第三方固件"></a>2.3. 卡刷第三方固件</h2><p>① 将下载好的XPERIA_PIE_XZ2_2.1.zip、1-Magisk.zip和2-Permissive.zip以及其他需要使用的卡刷包复制到手机存储或外置SD卡。</p>
@@ -177,7 +179,7 @@
 <p>③ 点击安装，选择XPERIA_PIE_XZ2_2.1.zip开始刷入。</p>
 <p>④ 再依次刷入1-Magisk.zip和2-Permissive.zip。</p>
 <p>⑤ 看论坛评论此版本谷歌框架的使用有问题，因此再刷入delete google.zip。</p>
-<p>⑥ 平时使用谷歌套件可去<a href="https://opengapps.org/" target="_blank" rel="noopener">OpenGAPPS</a>下载对应卡刷包刷入。Platform选择ARM64，Android选择9.0，Variant可按需选择（各选项的差别可参考<a href="https://www.zybuluo.com/wddzzz/note/733197#%E4%B8%80opengapps-app%E6%99%BA%E8%83%BD%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-%E6%8E%A8%E8%8D%90" target="_blank" rel="noopener">这里</a>）注意不要在此Rec下使用aroma，亲测无法弹出自定义图形界面。</p>
+<p>⑥ 平时使用谷歌套件可去<a href="https://opengapps.org/" target="_blank" rel="noopener">OpenGAPPS</a>下载对应卡刷包刷入。Platform选择ARM64，Android选择9.0，Variant可按需选择（各选项的差别可参考<a href="https://www.zybuluo.com/wddzzz/note/733197#%E4%B8%80opengapps-app%E6%99%BA%E8%83%BD%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-%E6%8E%A8%E8%8D%90" target="_blank" rel="noopener">这里</a>）。注意不要在此Rec下使用aroma，亲测无法弹出自定义图形界面。</p>
 <p>⑦ 开机。</p>
 
         
