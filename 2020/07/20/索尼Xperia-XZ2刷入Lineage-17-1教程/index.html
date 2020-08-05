@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#unofficial-build转official-build（我在这里遇到了签名错误，打算放弃了）"><span class="toc-text">unofficial-build转official-build（我在这里遇到了签名错误，打算放弃了）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#直接刷入official-build"><span class="toc-text">直接刷入official-build</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-解锁"><span class="toc-text">1. 解锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-强刷底包固件"><span class="toc-text">2. 强刷底包固件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-刷入VoLTE"><span class="toc-text">3. 刷入VoLTE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-刷入LineageOS"><span class="toc-text">4. 刷入LineageOS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-刷入更新包"><span class="toc-text">5. 刷入更新包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-其他"><span class="toc-text">6. 其他</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#直接刷入official-build"><span class="toc-text">直接刷入official-build</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-解锁"><span class="toc-text">1. 解锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-强刷底包固件"><span class="toc-text">2. 强刷底包固件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-刷入VoLTE"><span class="toc-text">3. 刷入VoLTE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-刷入LineageOS"><span class="toc-text">4. 刷入LineageOS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-刷入更新包"><span class="toc-text">5. 刷入更新包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-其他"><span class="toc-text">6. 其他</span></a></li></ol>
 </div>
     
 </div>
@@ -137,12 +137,7 @@
 
     </div>
     <div class="post-content ">
-        <p>因为此ROM已经获得了Lineage官方的支持，直接刷入official-build版可以在线OTA更新，所以原来的教程就没有太大意义了。下面先介绍之前通过原文教程刷入的unofficial-build版如何不清除数据转为official-build版，再介绍直接刷入official-build版的步骤。</p>
-<h1 id="unofficial-build转official-build（我在这里遇到了签名错误，打算放弃了）"><a href="#unofficial-build转official-build（我在这里遇到了签名错误，打算放弃了）" class="headerlink" title="unofficial-build转official-build（我在这里遇到了签名错误，打算放弃了）"></a>unofficial-build转official-build（我在这里遇到了签名错误，打算放弃了）</h1><p>0.1. 开发者选项中，开启Android调试和Root身份的调试；</p>
-<p>0.2. 在<a href="https://github.com/LineageOS/scripts/tree/master/key-migration" target="_blank" rel="noopener">这个页面</a>下载migration.sh，在<a href="https://download.lineageos.org/akari" target="_blank" rel="noopener">这个界面</a>下载official-build包，都放入platform-tools文件夹中；</p>
-<p>0.3. 手机开机状态下，连接数据线，在platform-tools目录下打开命令窗口，输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb shell stop</span><br><span class="line">adb push migration.sh /data/local/tmp/migration.sh</span><br><span class="line">adb shell chmod +x /data/local/tmp/migration.sh</span><br><span class="line">adb shell sh /data/local/tmp/migration.sh official</span><br><span class="line">adb reboot recovery</span><br></pre></td></tr></table></figure>
-<p>0.4. 这时进入了Lineage Recovery，使用adb sideload命令刷入official-build包。</p>
+        <p>因为此ROM已经获得了Lineage官方的支持，直接刷入official-build版可以在线OTA更新，所以原来的教程就没有太大意义了。下面介绍直接刷入official-build版的步骤。</p>
 <h1 id="直接刷入official-build"><a href="#直接刷入official-build" class="headerlink" title="直接刷入official-build"></a>直接刷入official-build</h1><p>0.1. 确保手机已经升级到了官方Android 10并且至少启动一次，确保手机已经解锁；</p>
 <p>0.2. 通过<a href="https://sunv.lanzous.com/igJLQeris8f" target="_blank" rel="noopener">此链接</a>下载platform-tools R28并解压，进入platform-tools文件夹，此目录下打开命令窗口；</p>
 <p>0.3. 通过<a href="https://sunv.lanzous.com/iUPptez4r9e" target="_blank" rel="noopener">此链接</a>下载vbmeta.img，在<a href="https://download.lineageos.org/akari" target="_blank" rel="noopener">此页面</a>下载Lineage Recovery和lineage-17.1包，通过<a href="https://androidfilehost.com/?fid=4349826312261712574" target="_blank" rel="noopener">此链接</a>下载copy-partitions.zip，都放入platform-tools文件夹内；</p>
