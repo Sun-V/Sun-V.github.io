@@ -56,32 +56,32 @@
             <li>
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li class="active">
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li>
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li>
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input">
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -112,24 +112,45 @@
         <!-- Main Content -->
         <div id="tag_cloud" class="tags">
     
-    <a href="#VPS" title="VPS" rel="2">VPS</a>
-    
     <a href="#LyX" title="LyX" rel="1">LyX</a>
+    
+    <a href="#VPS" title="VPS" rel="2">VPS</a>
     
     <a href="#Android" title="Android" rel="4">Android</a>
     
     <a href="#Software" title="Software" rel="2">Software</a>
     
+    <a href="#Hardware" title="Hardware" rel="1">Hardware</a>
+    
     <a href="#Linux" title="Linux" rel="1">Linux</a>
     
     <a href="#Others" title="Others" rel="1">Others</a>
-    
-    <a href="#Hardware" title="Hardware" rel="1">Hardware</a>
     
 </div>
 
 <!-- 标签列表 -->
 
+
+<div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="LyX">
+                    <span class="tag-text">LyX</span>
+                </span>
+    
+    <!-- <li class="listing-item">
+    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li> -->
+    <div class="post-preview">
+        <a href="/2019/06/29/LyX中插入代码缩进格式失效问题的解决办法/">
+            <h2 class="post-title">
+                LyX中插入代码缩进格式失效问题的解决办法
+            </h2>
+            
+        </a>
+        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+    </div>
+    
+</div>
 
 <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="VPS">
@@ -167,27 +188,6 @@
 </div>
 
 <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="LyX">
-                    <span class="tag-text">LyX</span>
-                </span>
-    
-    <!-- <li class="listing-item">
-    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-    </li> -->
-    <div class="post-preview">
-        <a href="/2019/06/29/LyX中插入代码缩进格式失效问题的解决办法/">
-            <h2 class="post-title">
-                LyX中插入代码缩进格式失效问题的解决办法
-            </h2>
-            
-        </a>
-        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-    </div>
-    
-</div>
-
-<div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="Android">
                     <span class="tag-text">Android</span>
                 </span>
@@ -200,20 +200,6 @@
         <a href="/2019/03/24/刷机重置手机前忘记退出google账号，导致开机卡google验证的解决方法/">
             <h2 class="post-title">
                 刷机重置手机前忘记退出google账号，导致开机卡google验证的解决方法
-            </h2>
-            
-        </a>
-        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-    </div>
-    
-    <!-- <li class="listing-item">
-    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-    </li> -->
-    <div class="post-preview">
-        <a href="/2020/07/20/索尼Xperia-XZ2刷入Lineage-17-1教程/">
-            <h2 class="post-title">
-                索尼Xperia XZ2刷入Lineage 17.1教程
             </h2>
             
         </a>
@@ -242,6 +228,20 @@
         <a href="/2020/05/26/索尼Xperia-XZ2刷入eXistenZ-Quindim教程/">
             <h2 class="post-title">
                 索尼Xperia XZ2刷入eXistenZ-Quindim教程
+            </h2>
+            
+        </a>
+        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+    </div>
+    
+    <!-- <li class="listing-item">
+    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li> -->
+    <div class="post-preview">
+        <a href="/2020/07/20/索尼Xperia-XZ2刷入Lineage-17-1教程/">
+            <h2 class="post-title">
+                索尼Xperia XZ2刷入Lineage 17.1教程
             </h2>
             
         </a>
@@ -286,6 +286,27 @@
 </div>
 
 <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Hardware">
+                    <span class="tag-text">Hardware</span>
+                </span>
+    
+    <!-- <li class="listing-item">
+    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li> -->
+    <div class="post-preview">
+        <a href="/2019/04/29/笔记本键盘上某些键（例如break键）消失了怎么办？/">
+            <h2 class="post-title">
+                笔记本键盘上某些键（例如break键）消失了怎么办？
+            </h2>
+            
+        </a>
+        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+    </div>
+    
+</div>
+
+<div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="Linux">
                     <span class="tag-text">Linux</span>
                 </span>
@@ -319,27 +340,6 @@
         <a href="/2019/07/10/田英章硬币书法视频示范/">
             <h2 class="post-title">
                 田英章硬笔书法视频示范
-            </h2>
-            
-        </a>
-        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-    </div>
-    
-</div>
-
-<div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Hardware">
-                    <span class="tag-text">Hardware</span>
-                </span>
-    
-    <!-- <li class="listing-item">
-    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-    </li> -->
-    <div class="post-preview">
-        <a href="/2019/04/29/笔记本键盘上某些键（例如break键）消失了怎么办？/">
-            <h2 class="post-title">
-                笔记本键盘上某些键（例如break键）消失了怎么办？
             </h2>
             
         </a>
