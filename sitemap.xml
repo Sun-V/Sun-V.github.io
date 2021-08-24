@@ -116,13 +116,6 @@
 
   
   <url>
-    <loc>https://sun-v.github.io/tags/LyX/</loc>
-    <lastmod>2021-08-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sun-v.github.io/tags/VPS/</loc>
     <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
@@ -137,14 +130,14 @@
   </url>
   
   <url>
-    <loc>https://sun-v.github.io/tags/Android/</loc>
+    <loc>https://sun-v.github.io/tags/LyX/</loc>
     <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sun-v.github.io/tags/Software/</loc>
+    <loc>https://sun-v.github.io/tags/Android/</loc>
     <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -158,7 +151,7 @@
   </url>
   
   <url>
-    <loc>https://sun-v.github.io/tags/Hardware/</loc>
+    <loc>https://sun-v.github.io/tags/Software/</loc>
     <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -166,6 +159,13 @@
   
   <url>
     <loc>https://sun-v.github.io/tags/Others/</loc>
+    <lastmod>2021-08-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sun-v.github.io/tags/Hardware/</loc>
     <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
