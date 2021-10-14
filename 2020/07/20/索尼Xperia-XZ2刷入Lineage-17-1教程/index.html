@@ -11,7 +11,7 @@
 
     <title>
         
-        索尼Xperia XZ2刷入Lineage 17.1教程 - undefined
+        索尼Xperia XZ2刷入Lineage 17.1/18.1教程 - undefined
         
     </title>
 
@@ -123,7 +123,7 @@
 
 <div class="post-container">
     <div class="post-title">
-        索尼Xperia XZ2刷入Lineage 17.1教程
+        索尼Xperia XZ2刷入Lineage 17.1/18.1教程
     </div>
 
     <div class="post-meta">
@@ -144,7 +144,7 @@
         <p>因为此ROM已经获得了Lineage官方的支持，直接刷入official-build版可以在线OTA更新，所以原来的教程就没有太大意义了。下面介绍直接刷入official-build版的步骤。</p>
 <h1 id="直接刷入official-build"><a href="#直接刷入official-build" class="headerlink" title="直接刷入official-build"></a>直接刷入official-build</h1><p>0.1. 确保手机已经升级到了官方Android 10并且至少启动一次，确保手机已经解锁；</p>
 <p>0.2. 通过<a target="_blank" rel="noopener" href="https://sunv.lanzoui.com/igJLQeris8f">此链接</a>下载platform-tools R28并解压，进入platform-tools文件夹，此目录下打开命令窗口；</p>
-<p>0.3. 通过<a target="_blank" rel="noopener" href="https://sunv.lanzoui.com/iUPptez4r9e">此链接</a>下载vbmeta.img，在<a target="_blank" rel="noopener" href="https://download.lineageos.org/akari">此页面</a>下载Lineage Recovery和lineage-17.1包，通过<a target="_blank" rel="noopener" href="https://androidfilehost.com/?fid=4349826312261712574">此链接</a>下载copy-partitions.zip，都放入platform-tools文件夹内；</p>
+<p>0.3. 通过<a target="_blank" rel="noopener" href="https://sunv.lanzoui.com/iUPptez4r9e">此链接</a>下载vbmeta.img，在<a target="_blank" rel="noopener" href="https://download.lineageos.org/akari">此页面</a>下载Lineage Recovery和lineage-18.1包，通过<a target="_blank" rel="noopener" href="https://androidfilehost.com/?fid=4349826312261712574">此链接</a>下载copy-partitions.zip，都放入platform-tools文件夹内；</p>
 <p>0.4. 音量增加键进入蓝灯模式（或者<code>adb reboot bootloader</code>进入），在命令窗口输入</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img</span><br><span class="line">fastboot flash boot &lt;recovery_filename&gt;.img</span><br></pre></td></tr></table></figure>
 
@@ -154,6 +154,7 @@
 <p>0.8. 若不需要GApps，root权限等，可直接开机；</p>
 <p>0.9. 若需要刷入其他包，选择Advanced - Reboot to Recovery，按0.7. 步骤刷入即可（注：GApps需要在第一次开机之前刷入）；</p>
 <p>0.10. 需要索尼相机，需要在<a target="_blank" rel="noopener" href="https://androidfilehost.com/?w=files&flid=315674">这里</a>下载，刷入SemcCamera-xxx.zip和Magisk-xxx.zip后，在Magisk中安装selinux_permissive_v2.0_evdenis.zip 。</p>
+<p>注：magisk20.4版本会导致无限重启，建议使用<a target="_blank" rel="noopener" href="https://sunv.lanzoui.com/iKB0Fpv39zi">高版本</a></p>
 <p>分割线以下是原文。</p>
 <hr>
 <p>建议进行以下操作前对手机内重要数据进行备份，退出SIM卡和消除Google帐号。若执行完下述操作出现卡SONY或无限重启等问题，建议按照步骤仔细地重新刷入。以下操作中，使用第三方固件为<a target="_blank" rel="noopener" href="https://forum.xda-developers.com/member.php?u=8321130">Sjll</a>的<a target="_blank" rel="noopener" href="https://forum.xda-developers.com/xperia-xz2/development/pre-official-lineage-17-1-xperia-xz2-t4089775">基于官方的LineageOS 17.1</a>，与之对应，使用底包为<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1CBlg7mj4ztFAksFJGzKVLA">52.1.A.2.1</a>（提取码：l98l）。</p>
