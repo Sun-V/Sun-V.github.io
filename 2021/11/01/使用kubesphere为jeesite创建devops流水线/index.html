@@ -60,32 +60,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
+                    <span>홈</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
+                    <span>태그</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
+                    <span>아카이브</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
+                    <span>about</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
+                    <span>검색</span>
                 </a>
             </li>
             
@@ -104,7 +104,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">search</span>
+            <span id="begin-search">검색</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -128,16 +128,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2021-11-01 14:16:17</span></span>
+        <span class="attr">등록시간：<span>2021-11-01 14:16:17</span></span>
         
-        <span class="attr">Tags：/
+        <span class="attr">태그：/
         
         <a class="tag" href="/tags/#DevOps" title="DevOps">DevOps</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">방문：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -169,85 +169,70 @@
                 git(url: 'https://your-gitlab-url/your-group-name/jeesite4', credentialsId: 'gitlab-id', changelog: true, poll: false, branch: 'master')
             &#125;
             &#125;
-
-<pre><code>        stage(&#39;maven-test&#39;) &#123;
-        agent none
-        steps &#123;
-            container(&#39;maven&#39;) &#123;
-            sh &#39;mvn -version&#39;
-            &#125;
-
-        &#125;
-        &#125;
-
-        stage(&#39;maven-deploy&#39;) &#123;
-        agent none
-        steps &#123;
-            container(&#39;maven&#39;) &#123;
-            sh &#39;&#39;&#39;cd web/bin/
-    sh package.sh
-    # mvn -Dmaven.test.skip=true -Dfile.encoding=UTF-8 -DsourceEncoding=UTF-8 clean install -U -f web/pom.xml&#39;&#39;&#39;
-            &#125;
-
-        &#125;
-        &#125;
-
-        stage(&#39;code-check&#39;) &#123;
-        agent none
-        steps &#123;
-            container(&#39;maven&#39;) &#123;
-            withCredentials([string(credentialsId : &#39;sonar&#39; ,variable : &#39;SONAR_TOKEN&#39; ,)]) &#123;
-                withSonarQubeEnv(&#39;sonar&#39;) &#123;
-                sh &#39;&#39;&#39;cd web
-    mvn sonar:sonar -Dsonar.projectKey=jeesite  -Dsonar.host.url=your-sonarqube-url -Dsonar.login=$SONAR_TOKEN&#39;&#39;&#39;
+            stage('maven-test') &#123;
+            agent none
+            steps &#123;
+                container('maven') &#123;
+                sh 'mvn -version'
                 &#125;
-
             &#125;
-
-            timeout(unit: &#39;HOURS&#39;, activity: true, time: 1) &#123;
-                waitForQualityGate &#39;true&#39;
             &#125;
-
+            stage('maven-deploy') &#123;
+            agent none
+            steps &#123;
+                container('maven') &#123;
+                sh '''cd web/bin/
+        sh package.sh
+        # mvn -Dmaven.test.skip=true -Dfile.encoding=UTF-8 -DsourceEncoding=UTF-8 clean install -U -f web/pom.xml'''
+                &#125;
             &#125;
-
-        &#125;
-        &#125;
-
-        stage(&#39;build &amp; push&#39;) &#123;
-        agent none
-        steps &#123;
-            script &#123;
-            env.COMMIT_ID = sh(returnStdout: true, script: &quot;git log -n 1 --pretty=format:&#39;%h&#39;&quot;).trim()
-            env.BUILD_FLAG=&quot;$&#123;COMMIT_ID&#125;&quot;
             &#125;
-
-            container(&#39;maven&#39;) &#123;
-            sh &#39;docker build -f Dockerfile -t $REGISTRY/$HARBOR_NAMESPACE/$IMAGE_APP_NAME:$BUILD_FLAG .&#39;
-            // &#39;robot$test+jeesite&#39;中的test为HARBOR_NAMESPACE，jeesite为自己创建的机器人帐户名字
-            sh &#39;echo $HARBOR_CREDENTIAL_PSW | docker login $REGISTRY -u \&#39;robot$test+jeesite\&#39; --password-stdin&#39; 
-            sh &#39;docker push $REGISTRY/$HARBOR_NAMESPACE/$IMAGE_APP_NAME:$BUILD_FLAG&#39;
+            stage('code-check') &#123;
+            agent none
+            steps &#123;
+                container('maven') &#123;
+                withCredentials([string(credentialsId : 'sonar' ,variable : 'SONAR_TOKEN' ,)]) &#123;
+                    withSonarQubeEnv('sonar') &#123;
+                    sh '''cd web
+        mvn sonar:sonar -Dsonar.projectKey=jeesite  -Dsonar.host.url=your-sonarqube-url -Dsonar.login=$SONAR_TOKEN'''
+                    &#125;
+                &#125;
+                timeout(unit: 'HOURS', activity: true, time: 1) &#123;
+                    waitForQualityGate 'true'
+                &#125;
+                &#125;
             &#125;
-
+            &#125;
+            stage('build & push') &#123;
+            agent none
+            steps &#123;
+                script &#123;
+                env.COMMIT_ID = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+                env.BUILD_FLAG="$&#123;COMMIT_ID&#125;"
+                &#125;
+                container('maven') &#123;
+                sh 'docker build -f Dockerfile -t $REGISTRY/$HARBOR_NAMESPACE/$IMAGE_APP_NAME:$BUILD_FLAG .'
+                // 'robot$test+jeesite'中的test为HARBOR_NAMESPACE，jeesite为自己创建的机器人帐户名字
+                sh 'echo $HARBOR_CREDENTIAL_PSW | docker login $REGISTRY -u \'robot$test+jeesite\' --password-stdin' 
+                sh 'docker push $REGISTRY/$HARBOR_NAMESPACE/$IMAGE_APP_NAME:$BUILD_FLAG'
+                &#125;
+            &#125;
+            &#125;
+            stage('deploy2k8s') &#123;
+            agent none
+            steps &#123;
+                kubernetesDeploy(enableConfigSubstitution: true, deleteResource: false, kubeconfigId: 'kubeconfig', configs: 'deploy/jeesite.yaml')
+            &#125;
+            &#125;
         &#125;
+        environment &#123;
+            IMAGE_APP_NAME = 'jeesite'
+            REGISTRY = 'your-harbor-url'
+            HARBOR_NAMESPACE = 'test'
+            HARBOR_CREDENTIAL = credentials('harbor-jeesite')
         &#125;
-
-        stage(&#39;deploy2k8s&#39;) &#123;
-        agent none
-        steps &#123;
-            kubernetesDeploy(enableConfigSubstitution: true, deleteResource: false, kubeconfigId: &#39;kubeconfig&#39;, configs: &#39;deploy/jeesite.yaml&#39;)
-        &#125;
-        &#125;
-
     &#125;
-    environment &#123;
-        IMAGE_APP_NAME = &#39;jeesite&#39;
-        REGISTRY = &#39;your-harbor-url&#39;
-        HARBOR_NAMESPACE = &#39;test&#39;
-        HARBOR_CREDENTIAL = credentials(&#39;harbor-jeesite&#39;)
-    &#125;
-&#125;
-</code></pre>
-<p>  </code></pre></p>
+  </code></pre>
 </details>
 
 <p>将<a target="_blank" rel="noopener" href="https://gitee.com/thinkgem/jeesite4">jeesite源码</a>clone到自己的gitlab，进入web/src/main/resources/config/application.yml，修改jdbc配置。创建Dockerfile文件以打包镜像，创建deploy/jeesite.yaml文件以部署项目到k8s。</p>
@@ -262,8 +247,7 @@
         && rm -rf /usr/local/web.war
     WORKDIR /usr/local/web/WEB-INF/
     ENTRYPOINT ["sh", "./startup.sh"]
-
-<p>  </code></pre></p>
+  </code></pre>
 </details>
 
 <details>
@@ -342,8 +326,7 @@
         - backend:
             serviceName: jeesite
             servicePort: 80
-
-<p>  </code></pre></p>
+  </code></pre>
 </details>
 
 <p>若harbor项目访问级别为私有，需要在k8s你所要部署jeesite的命名空间中添加密钥，这对应到jeesite.yaml中Deployment的template.imagePullSecrets字段。</p>
