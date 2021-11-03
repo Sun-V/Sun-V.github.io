@@ -60,32 +60,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
+                    <span>홈</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
+                    <span>태그</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
+                    <span>아카이브</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
+                    <span>about</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
+                    <span>검색</span>
                 </a>
             </li>
             
@@ -104,7 +104,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">search</span>
+            <span id="begin-search">검색</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -128,16 +128,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2021-11-01 14:16:17</span></span>
+        <span class="attr">등록시간：<span>2021-11-01 14:16:17</span></span>
         
-        <span class="attr">Tags：/
+        <span class="attr">태그：/
         
         <a class="tag" href="/tags/#DevOps" title="DevOps">DevOps</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">방문：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -227,7 +227,7 @@
         &#125;
         environment &#123;
             IMAGE_APP_NAME = 'jeesite'
-            REGISTRY = 'your-harbor-url'
+            REGISTRY = 'your-harbor-domain'
             HARBOR_NAMESPACE = 'test'
             HARBOR_CREDENTIAL = credentials('harbor-jeesite')
         &#125;
@@ -256,17 +256,17 @@
     apiVersion: apps/v1
     kind: Deployment
     metadata:
-    name: jeesite
-    namespace: jeesite
+      name: jeesite
+      namespace: jeesite
     spec:
-    replicas: 1
-    revisionHistoryLimit: 3
-    selector:
+      replicas: 1
+      revisionHistoryLimit: 3
+      selector:
         matchLabels:
-        app: jeesite
-    template:
+          app: jeesite
+      template:
         metadata:
-        labels:
+          labels:
             app: jeesite
         spec:
         #   volumes:
@@ -279,53 +279,53 @@
         #         defaultMode: 0644
         containers:
             - image: $REGISTRY/$HARBOR_NAMESPACE/$IMAGE_APP_NAME:$BUILD_FLAG
-            name: jeesite
-            imagePullPolicy: Always  
-            ports:
+              name: jeesite
+              imagePullPolicy: Always  
+              ports:
                 - containerPort: 80
-                name: http
+                  name: http
                 - containerPort: 443
-                name: https
+                  name: https
             #   volumeMounts:
             #     - name: volume-config
             #       readOnly: true
             #       mountPath: /usr/local/web/WEB-INF/classes/config/application.yml
             #       subPath: application.yml
-        imagePullSecrets:
+          imagePullSecrets:
             - name: harbor-sec 
-        restartPolicy: Always   
+          restartPolicy: Always   
     ---
     apiVersion: v1
     kind: Service # 若无域名，可自行修改为nodeport方式
     metadata:
-    name: jeesite
-    namespace: jeesite
+      name: jeesite
+      namespace: jeesite
     spec:
-    ports:
-    - port: 80
-    targetPort: 8980
-    selector:
-    app: jeesite
+      ports:
+      - port: 80
+        targetPort: 8980
+      selector:
+        app: jeesite
     ---
     apiVersion: networking.k8s.io/v1beta1
     kind: Ingress # 若无域名，则取消ingress
     metadata:
-    name: jeesite
-    namespace: jeesite
-    annotations:
+      name: jeesite
+      namespace: jeesite
+      annotations:
         kubernetes.io/ingress.class: nginx
     spec:
-    tls:
-    - hosts:
-        - your-jeesite-host
+      tls:
+      - hosts:
+        - your-jeesite-domain
         secretName: jeesite-crt-secret
-    rules:
-    - host: your-jeesite-host
+      rules:
+      - host: your-jeesite-domain
         http:
-        paths:
-        - backend:
-            serviceName: jeesite
-            servicePort: 80
+          paths:
+          - backend:
+              serviceName: jeesite
+              servicePort: 80
   </code></pre>
 </details>
 
@@ -338,7 +338,7 @@
 <ul>
 <li>通过kubectl exec命令或在kubesphere中进入mysql容器，在/etc/mysql/my.cnf中添加如下配置：</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">sql_mode=&quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">sql_mode=&quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&quot;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>mysql -uroot -p 进入mysql后，创建用户和授权：</li>
 </ul>
@@ -352,14 +352,14 @@
 <h1 id="使用Webhook触发流水线"><a href="#使用Webhook触发流水线" class="headerlink" title="使用Webhook触发流水线"></a>使用Webhook触发流水线</h1><ul>
 <li>jenkins配置</li>
 </ul>
-<p>30180端口打开jenkins页面（默认账号密码：admin / P@88w0rd），进入系统管理-插件管理，点击可选插件，搜索并安装如下未装插件：Git Plugin、SSH Plugin、URL Trigger Plugin、Gerrit Trigger、Gitlab Hook Plugin、Gitlab Merge Request Builder、GitLab Plugin。然后重启jenkins（your-host:30180/restart）。待重启完毕，进入jeesite对应的流水线，点击配置-构建触发器，选中Build when a change is pushed to GitLab…，复制红框中的链接。<br><img src="/img/jeesite/%E9%85%8D%E7%BD%AEjenkins.png" alt="勾选触发器选项"></p>
+<p>30180端口打开jenkins页面（默认账号密码：admin / P@88w0rd），进入系统管理-插件管理，点击可选插件，搜索并安装下列未装插件：Git Plugin、SSH Plugin、URL Trigger Plugin、Gerrit Trigger、Gitlab Hook Plugin、Gitlab Merge Request Builder、GitLab Plugin。然后重启jenkins（your-host:30180/restart）。待重启完毕，进入jeesite对应的流水线，点击配置-构建触发器，选中Build when a change is pushed to GitLab…，复制红框中的链接。<br><img src="/img/jeesite/%E9%85%8D%E7%BD%AEjenkins.png" alt="勾选触发器选项"></p>
 <p>点击高级-Generate，生成secret token，复制token，然后保存设置。</p>
 <ul>
 <li>gitlab配置</li>
 </ul>
 <p>点击扳手图标进入admin area，再点击settings-network，确保outbound requests下两选项为选中状态。</p>
 <p><img src="/img/jeesite/gitlab-network.png" alt="outbound requests"></p>
-<p>进入jeesite4项目，点击settings-webhooks，在URL和Secret Token中输入上步复制的对应值。若复制过来的URL不是ip形式，则将类似jenkins.devops.kubesphere.local部分替换为节点ip。添加完成后，点击teset-push events，可模拟一次push events事件。若顺利，页面会出现Hook executed successfully: HTTP 200消息，刷新kubesphere jeesite流水线页面，有新的活动运行。</p>
+<p>进入jeesite4项目，点击settings-webhooks，在URL和Secret Token中输入上步复制的对应值。若复制过来的URL不是ip形式，则将jenkins.devops.kubesphere.local部分替换为节点ip。添加完成后，点击teset-push events，可模拟一次push events事件。若顺利，页面会出现Hook executed successfully: HTTP 200消息，刷新kubesphere jeesite流水线页面，有新的活动运行。</p>
 <p>为测试实际效果，在gitlab中修改web/src/main/resources/config/application.yml，将productName设置为JeeSite，提交修改后，流水线自动运行。待部署完毕，访问jeesite，发现“Demo”已消失。</p>
 <p><img src="/img/jeesite/%E6%97%A0demo.png" alt="productName更改生效"></p>
 

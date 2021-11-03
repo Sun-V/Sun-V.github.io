@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="日常摸鱼">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        云IDE平台code-server在k8s上的部署 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 富强    民主    文明    和谐    自由    平等    公正    法治    爱国    敬业    诚信    友善 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/favicon.ico" />
+        </div>
+        <div class="name">
+            <i>SunV</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>홈</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>태그</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>아카이브</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>about</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>검색</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#code-server%E7%9A%84%E9%83%A8%E7%BD%B2"><span class="toc-text">code-server的部署</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text">一些问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E7%94%A8%E6%88%B7%E7%9A%84%E5%AE%9E%E7%8E%B0-%E2%80%94%E2%80%94-vscode-live"><span class="toc-text">多用户的实现 —— vscode-live</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">검색</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 富强    民主    文明    和谐    自由    平等    公正    法治    爱国    敬业    诚信    友善 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        云IDE平台code-server在k8s上的部署
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">등록시간：<span>2021-11-02 09:47:40</span></span>
+        
+        <span class="attr">태그：/
+        
+        <a class="tag" href="/tags/#k8s" title="k8s">k8s</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">방문：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>云IDE平台code-server的界面和功能基本上和本地vscode保持了一致，且满足了实时协作、统一开发环境等需求。通过浏览器访问，IDE的使用不再受限于地点和设备；IDE部署在k8s集群，也使得其运行不受制于个人计算机的处理能力。更多code-server的介绍可以查看其<a target="_blank" rel="noopener" href="https://coder.com/">官网</a>和<a target="_blank" rel="noopener" href="https://github.com/cdr/code-server">github</a>。</p>
+<h1 id="code-server的部署"><a href="#code-server的部署" class="headerlink" title="code-server的部署"></a>code-server的部署</h1><p>直接给出配置文件，其中包括了服务，证书，应用路由，部署（deployment）等的配置。若使用nodeport方式进行访问，则可以自行修改服务的配置，忽略证书和应用路由。若有使用kubesphere，命名空间（项目）可以直接在kubesphere企业空间下新建。若通过kubectl create ns命令或配置文件创建，该命名空间不会直接显示在kubesphere企业空间下，需要<a target="_blank" rel="noopener" href="https://v3-1.docs.kubesphere.io/zh/docs/faq/access-control/add-kubernetes-namespace-to-kubesphere-workspace/">自行分配</a>。</p>
+<details>
+  <summary>code-server.yaml</summary>
+  <pre><code> 
+    # apiVersion: v1
+    # kind: Namespace
+    # metadata:
+    #   name: code-server  
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: code-server
+      namespace: code-server
+    spec:
+      ports:
+      - port: 80
+        targetPort: 8080
+      selector:
+        app: code-server
+    ---
+    apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: code-server-crt 
+      namespace: code-server
+    spec:
+      secretName: code-server-crt-secret
+      issuerRef:
+        name: cert-manager-webhook-dnspod-cluster-issuer   
+        kind: ClusterIssuer
+        group: cert-manager.io
+      dnsNames:                          
+      - your-code-server-domain
+    ---
+    apiVersion: networking.k8s.io/v1beta1
+    kind: Ingress
+    metadata:
+      name: code-server
+      namespace: code-server
+      annotations:
+        kubernetes.io/ingress.class: nginx
+    spec:
+      tls:
+      - hosts:
+        - your-code-server-domain
+        secretName: code-server-crt-secret
+    rules:
+    - host: your-code-server-domain
+      http:
+        paths:
+        - backend:
+            serviceName: code-server
+            servicePort: 80
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app: code-server
+      name: code-server
+      namespace: code-server
+    spec:
+      selector:
+        matchLabels:
+          app: code-server
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          app: code-server
+      spec:
+        containers:
+        - image: codercom/code-server
+          imagePullPolicy: Always
+          name: code-server
+          env:
+          - name: PASSWORD
+            value: "admin"
+  </code></pre>
+</details>
+
+<p>签发证书、域名配置等可以参考<a href="">这里</a>。</p>
+<h1 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h1><p>由于code-server中的扩展商店并不是直接来自vscode官方，某些扩展的安装会有问题。例如C/C++扩展安装后提示“The language server crashed 5 times in the last 3 minutes. It will not be restarted”，并可能有如下报错：“[Error - 11:16:48 AM] Connection to server got closed. Server will not be restarted./home/coder/.local/share/code-server/extensions/ms-vscode.cpptools-1.1.3/bin/cpptools: 7: Syntax error: word unexpected (expecting “)”)”。这是因为通过code-server扩展市场安装的C/C++扩展是针对arm平台的，需要卸载后下载合适的版本自行安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/microsoft/vscode-cpptools/releases/download/1.7.1/cpptools-linux.vsix</span><br><span class="line">code-server --install-extension cpptools-linux.vsix</span><br></pre></td></tr></table></figure>
+
+<p>在code-server中运行web项目时，需要通过tomcat接口访问，domain:port这种方式不会生效。以spring项目<a target="_blank" rel="noopener" href="https://github.com/ZemelZhu/MMS">MMS</a>为例，mvn tomcat7:run之后，通过domain/proxy/port/可以访问MMS。这里要注意不要丢掉最后的斜线，否则一些资源不会加载成功。</p>
+<p><img src="/img/code-server/mms-login.png" alt="mms-login"></p>
+<p>但/proxy/port/这种方式对某些项目仍不适用，例如<a target="_blank" rel="noopener" href="https://gitee.com/thinkgem/jeesite4">jeesite</a>，其js文件，css文件等不会加载成功。</p>
+<p><img src="/img/code-server/jeesite-login.png" alt="jeesite资源加载失败"></p>
+<p>可以改用domain/absproxy/port/my-app-path这种方式，具体到jeesite，需要将jeesite4/web/src/main/resources/config/application.yml配置文件中的server.servlet.context-path项改为 /absproxy/8980/js，其中“js”代表项目路径。配置完毕，重新打包运行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#======================================#</span><br><span class="line">#========== Server settings ===========#</span><br><span class="line">#======================================#</span><br><span class="line">server:</span><br><span class="line">  port: 8980</span><br><span class="line">  servlet:</span><br><span class="line">    context-path: /absproxy/8980/js</span><br><span class="line">  tomcat:</span><br><span class="line">    uri-encoding: UTF-8</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/code-server/jeesite-login-succ.png" alt="jeesite资源加载成功"></p>
+<p>微软近期也推出了自己的<a target="_blank" rel="noopener" href="https://vscode.dev/">在线vscode</a>，但没有终端，而且”Run and Debug are not available in the webeditor. To run and debug, you will need to continue in an environment that can run code, like a codespace or local vs Code”。更多介绍可以查看博客文章<a target="_blank" rel="noopener" href="https://code.visualstudio.com/blogs/2021/10/20/vscode-dev">vscode.dev(!)</a>。</p>
+<h1 id="多用户的实现-——-vscode-live"><a href="#多用户的实现-——-vscode-live" class="headerlink" title="多用户的实现 —— vscode-live"></a>多用户的实现 —— vscode-live</h1><p>code-server不支持多用户登录，<a target="_blank" rel="noopener" href="https://github.com/coderpair/vscode-live">vscode-live</a>依靠firebase服务提供了支持。vscode-live在k8s上部署的配置文件如下。</p>
+<details>
+  <summary>vscode-live.yaml</summary>
+  <pre><code> 
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: vscode-live  
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: vscode-live
+ namespace: vscode-live
+spec:
+ ports:
+ - port: 80
+   targetPort: 8888
+ selector:
+   app: vscode-live
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vscode-live
+  namespace: vscode-live
+data:
+  config.yaml: |-
+    bind-addr: 0.0.0.0:8888
+    auth: password
+    admin: admin-dashboard
+    cert: false
+    firebase-apiKey: 'your-apikey'
+    firebase-authDomain: 'user-defined.firebaseapp.com'
+    firebase-databaseURL: 'https://user-defined.firebaseio.com'
+    firebase-ref: 'user-defined'
+    users: &#123;
+      admin: &#123;password: admin, role: admin&#125;,
+      user0: &#123;password: user0, role: user&#125;,
+      user1: &#123;password: user1, role: user&#125;
+    &#125;
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vscode-live-crt          
+  namespace: vscode-live        
+spec:
+  secretName: vscode-live-crt-secret      
+  issuerRef:
+    name: cert-manager-webhook-dnspod-cluster-issuer  
+    kind: ClusterIssuer
+    group: cert-manager.io
+  dnsNames:                         
+  - your-vscode-live-domain
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: vscode-live
+  namespace: vscode-live
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+  - hosts:
+    - your-vscode-live-domain
+    secretName: vscode-live-crt-secret
+  rules:
+  - host: your-vscode-live-domain
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: vscode-live
+          servicePort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: vscode-live
+  name: vscode-live
+  namespace: vscode-live
+spec:
+  selector:
+    matchLabels:
+      app: vscode-live
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vscode-live
+    spec:
+      volumes:
+      - name: vscode-live-configurations
+        configMap:
+          defaultMode: 0664
+          name: vscode-live
+      containers:
+      - image: sunjqv/vscode-live:v1.1.0
+      # - image: sunjqv/vscode-live:debian
+        imagePullPolicy: Always
+        name: vscode-live
+        volumeMounts:
+        - name: vscode-live-configurations
+          mountPath: /.config/code-server/config.yaml
+          subPath: config.yaml
+  </code></pre>
+</details>
+
+<p>configmap挂载了vscode-live的配置文件config.yaml，其中admin字段设置在dashboard中进行更改所需的确认密码，firebase-xxx字段需要填入firebase应用的配置信息，users字段对用户信息进行设置。<br>登录<a target="_blank" rel="noopener" href="https://console.firebase.google.com/">firebase平台</a>，添加一个项目，进入项目后，点击Realtime Datebase创建数据库。点击项目概览右侧设置图标-项目设置，在常规-您的应用中添加一个网页应用，选中SDK设置和配置下的“配置”，即可获得所需的firebase-apikey、firebase-authDomain、firebase-databaseURL。firebase-ref可自行更改。</p>
+<p><img src="/img/code-server/firebase.png" alt="firebase"></p>
+<p>vscode-live部署完毕后，可在domain/login页面通过用户密码登录。若要开启实时协作功能，需要在domain/dashboard页面打开“Turn on real-time collaboration”按钮，然后输入admin密码（并不是admin用户的密码，而是config.yaml中admin字段设置的密码，在本文中是admin-dashboard）并提交。多个用户登录后，点击右下角live图标，可以显示已登录用户信息。</p>
+<p><img src="/img/code-server/vscode-live.png" alt="vscode-live"></p>
+<p>由于vscode-live并不是在code-server原有基础上通过扩展等提供的服务，所以它并没有保持较新的版本。使用过程中也发现一些问题，例如无法使用domain/absproxy/port/my-app-path，刷新页面丢失终端信息等。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Sun-V">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script type="text/javascript">
+       (function() {
+           if (typeof LivereTower === 'function') { return; }
+
+           var j, d = document.getElementById('lv-container');
+
+           d.setAttribute('data-id','city');
+           d.setAttribute('data-uid' , 'MTAyMC80ODA3OS8yNDU3Ng==');
+
+           j = document.createElement('script');
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           d.appendChild(j);
+       })();
+    </script>
+    <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+</html>
